@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "project": {
+    "name": "CampusConnect UASZ",
+    "productType": "University campus social network",
+    "stack": [
+      "React 19",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS 4",
+      "DaisyUI 5",
+      "Motion for React"
+    ]
+  },
+  "sources": {
+    "tokens": [],
+    "components": [],
+    "assets": [],
+    "instructions": [
+      "AGENTS.md"
+    ]
+  },
+  "design": {
+    "colorMode": "light",
+    "colors": {
+      "canvas": "#F5F3EB",
+      "evergreen": "#175C47",
+      "sage": "#82A98E",
+      "sunGold": "#E6BD68",
+      "terracotta": "#D9775C",
+      "ink": "#25332D"
+    },
+    "typography": {
+      "family": "Inter, system-ui, sans-serif",
+      "heading": "Compact, bold, clear",
+      "body": "Readable French UI copy"
+    },
+    "spacing": {
+      "base": "4px",
+      "page": "responsive 24-48px",
+      "section": "20-32px"
+    },
+    "radius": {
+      "card": "20px",
+      "field": "14px",
+      "pill": "999px"
+    },
+    "shadows": {
+      "surface": "subtle",
+      "floating": "0 16px 42px at 8% opacity"
+    },
+    "motion": {
+      "library": "Motion for React",
+      "reducedMotion": "respect system preference",
+      "route": "short fade and vertical offset",
+      "content": "layout transitions for add/remove"
+    },
+    "density": "comfortable"
+  },
+  "components": {
+    "installed": [
+      "DaisyUI",
+      "Motion for React",
+      "Lucide React"
+    ],
+    "preferredPrimitives": [
+      "DaisyUI card, button, input, select, textarea",
+      "Lucide React icons",
+      "Motion for React transitions"
+    ],
+    "patterns": [
+      "Shared sticky header and responsive horizontal section navigation",
+      "Consistent page headings, cards and form controls",
+      "Motion-aware route transitions"
+    ]
+  },
+  "constraints": {
+    "must": [
+      "Preserve all existing CampusConnect routes and API behavior",
+      "Responsive from 320px width",
+      "Visible focus and semantic controls",
+      "Respect prefers-reduced-motion",
+      "Use French UI copy"
+    ],
+    "avoid": [
+      "Do not edit sources reference material",
+      "Avoid excessive card nesting and decorative gradients",
+      "Avoid layout motion for reduced-motion users"
+    ]
+  },
+  "decisions": [
+    {
+      "decision": "Adopt a five-color campus palette: ivory, evergreen, sage, sun gold, terracotta",
+      "reason": "Give every route one recognizable and coherent UASZ identity"
+    },
+    {
+      "decision": "Use Motion for route and content transitions, Lucide for iconography",
+      "reason": "Keep animations consistent and icons legible across breakpoints"
+    }
+  ],
+  "evidence": [
+    {
+      "fact": "project.instructions",
+      "source": "AGENTS.md"
+    }
+  ],
+  "generatedAt": "2026-10-15T18:21:23.917Z"
+}

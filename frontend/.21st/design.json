@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "project": {
+    "name": "campusconnect-web",
+    "productType": "campus community platform",
+    "stack": [
+      "react",
+      "tailwind-v4",
+      "vite"
+    ]
+  },
+  "sources": {
+    "tokens": [],
+    "components": [],
+    "assets": [],
+    "instructions": []
+  },
+  "design": {
+    "colorMode": "light",
+    "colors": { "brand": "#035e7b", "brandStrong": "#002e2c", "canvas": "#eff1c5", "accent": "#a2a77f", "palette": ["#002e2c", "#035e7b", "#eff1c5", "#e3e7af", "#a2a77f"] },
+    "typography": { "family": "Inter, system-ui, sans-serif with editorial serif accents", "tone": "artistic, confident and community-centered" },
+    "spacing": { "density": "comfortable" },
+    "radius": { "card": "1.25rem", "control": "0.75rem" },
+    "shadows": { "card": "subtle deep-teal-tinted elevation" },
+    "motion": { "style": "subtle; respect reduced-motion" },
+    "density": "comfortable"
+  },
+  "components": {
+    "installed": ["daisyui@5"],
+    "preferredPrimitives": ["daisyUI cards, buttons, badges, inputs, selects, textareas", "Tailwind responsive layouts"],
+    "patterns": ["five-color UASZ palette", "editorial campus poster composition", "rounded cards", "visible keyboard focus", "responsive navigation"]
+  },
+  "constraints": {
+    "must": ["Use the requested five-color palette across the website.", "Keep sign-in, registration and campus feed layouts responsive and accessible."],
+    "avoid": []
+  },
+  "decisions": [
+    {
+      "date": "2026-10-18",
+      "choice": "Adopt the UASZ palette #002e2c, #035e7b, #eff1c5, #e3e7af and #a2a77f across the product. Use an editorial poster art direction for authentication and the campus feed, and wrap desktop navigation so every destination including Moderation stays visible.",
+      "source": "User-requested redesign"
+    }
+  ],
+  "evidence": [
+    {
+      "fact": "project.stack:react",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:tailwind-v4",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:vite",
+      "source": "package.json"
+    },
+    {
+      "fact": "design.tokens:five-color UASZ palette, editorial campus poster composition, responsive navigation, reduced-motion support",
+      "source": "src/styles.css"
+    },
+    {
+      "fact": "design.library:daisyui@5",
+      "source": "package.json"
+    }
+  ],
+  "generatedAt": "2026-10-18T13:52:45.000Z"
+}

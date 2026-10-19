@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: campusconnect-api
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/campusconnect}
+      auto-index-creation: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 11MB
+server:
+  port: ${SERVER_PORT:8080}
+app:
+  web:
+    allowed-origins: ${APP_WEB_ALLOWED_ORIGINS:http://localhost:5173}
+  upload:
+    directory: ${APP_UPLOAD_DIR:./uploads}
+  security:
+    jwt:
+      secret: ${JWT_SECRET:}
+      expiration-minutes: ${JWT_EXPIRATION_MINUTES:720}
+    moderator-emails: ${CAMPUS_MODERATOR_EMAILS:}
+    admin-emails: ${CAMPUS_ADMIN_EMAILS:}
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
