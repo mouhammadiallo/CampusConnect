@@ -2,6 +2,20 @@ import type { AcademicResource, AuthResponse, CampusClassified, CampusEvent, Cam
 
 export class ApiError extends Error {}
 export const SESSION_EXPIRED_EVENT = 'campusconnect:session-expired'
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? '').trim().replace(/\/+$/, '')
+
+function apiUrl(path: string): string {
+  return `${API_BASE_URL}${path}`
+}
+
+export function chatWebSocketUrl(): string {
+  const url = new URL(API_BASE_URL || window.location.origin)
+  url.protocol = url.protocol === 'https:' ? 'wss:' : 'ws:'
+  url.pathname = `${url.pathname.replace(/\/+$/, '')}/ws/chat`
+  url.search = ''
+  url.hash = ''
+  return url.toString()
+}
 
 async function request<T>(path: string, init: RequestInit = {}, token?: string): Promise<T> {
   const headers = new Headers(init.headers)
@@ -10,7 +24,7 @@ async function request<T>(path: string, init: RequestInit = {}, token?: string):
 
   let response: Response
   try {
-    response = await fetch(path, { ...init, headers })
+    response = await fetch(apiUrl(path), { ...init, headers })
   } catch {
     throw new ApiError('Impossible de joindre le serveur. Vérifiez que l’API est démarrée.')
   }
@@ -87,7 +101,7 @@ export function uploadFile(token: string, file: File, purpose: 'post' | 'resourc
 
 export async function fetchUploadedFile(token: string, id: string): Promise<Blob> {
   let response: Response
-  try { response = await fetch(`/api/uploads/${encodeURIComponent(id)}`, { headers: { Authorization: `Bearer ${token}` } }) }
+  try { response = await fetch(apiUrl(`/api/uploads/${encodeURIComponent(id)}`), { headers: { Authorization: `Bearer ${token}` } }) }
   catch { throw new ApiError('Impossible de joindre le serveur. Vérifiez que l’API est démarrée.') }
   if (!response.ok) {
     if (response.status === 401 && typeof window !== 'undefined') window.dispatchEvent(new Event(SESSION_EXPIRED_EVENT))
