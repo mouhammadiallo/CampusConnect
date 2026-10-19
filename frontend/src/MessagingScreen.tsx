@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
-import { ApiError, createConversation, getContacts, getConversations, getMessages } from './api'
+import { ApiError, chatWebSocketUrl, createConversation, getContacts, getConversations, getMessages } from './api'
 import type { ChatMessage, Conversation, Contact } from './types'
 import { Mail } from 'lucide-react'
 
@@ -42,8 +42,7 @@ export function MessagingScreen({ token, userId, fullName }: { token: string; us
   useEffect(() => {
     if (!active) { setMessages([]); return }
     let alive = true
-    const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
-    const ws = new WebSocket(`${wsProtocol}//${window.location.host}/ws/chat`)
+    const ws = new WebSocket(chatWebSocketUrl())
     socket.current = ws
     ws.onopen = () => ws.send(JSON.stringify({ type: 'AUTH', token }))
     ws.onmessage = (event) => {

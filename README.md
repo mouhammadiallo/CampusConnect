@@ -37,6 +37,16 @@ Set-Location backend
 
 Use this script instead of `mvn spring-boot:run` on Windows: it loads `.env`, validates or creates `JWT_SECRET`, locates Maven, and handles Windows PowerShell's Java version output. If CampusConnect already listens on port 8080, it reports that the API is already running instead of starting a duplicate instance.
 
+## Netlify deployment
+
+The root `netlify.toml` is configured for this repository layout: Netlify builds the React client from `frontend/`, publishes `frontend/dist`, and serves React Router routes through the SPA fallback. Connect the GitHub repository that contains this root file to Netlify; the build settings are read automatically.
+
+CampusConnect's Spring Boot API is a separate service and must be deployed on a Java-capable host. In Netlify, add the build environment variable `VITE_API_BASE_URL` with the API's public HTTPS origin (for example, `https://api.example.com`, without a trailing slash or `/api`). This value is public and must not contain secrets. Redeploy after changing it.
+
+On the API host, configure `MONGODB_URI` and a strong random `JWT_SECRET`, then set `APP_WEB_ALLOWED_ORIGINS` to the exact Netlify site origin (for example, `https://campusconnect-uasz.netlify.app`). This origin enables the API's HTTP CORS policy and the chat WebSocket origin check. Add additional comma-separated origins only when needed. Keep uploads on durable object storage before relying on them in production; the default local upload directory may not persist across host restarts.
+
+Local Vite development keeps `VITE_API_BASE_URL` blank and continues to use the `/api` and `/ws` proxies to `localhost:8080`.
+
 ## Security notes
 
 - Never commit `.env`, real JWT keys, database passwords, or production configuration.
